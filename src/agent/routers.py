@@ -1,6 +1,6 @@
 import numpy as np
 from loguru import logger
-from src.agent.llm import get_embeddings, get_llm_structured_output
+from src.agent.llm import get_embeddings, get_llm_answer
 from src.agent.schemas import WeeklySearchingSchema, ShoppingHabitsSchema, LllmRouterSchema
 from abc import ABC, abstractmethod
 
@@ -65,7 +65,7 @@ class LLMRouter(BaseRouter):
         ### Datasets Available
         {self._datasets}
         """
-        dataset = get_llm_structured_output(
+        dataset = get_llm_answer(
             system_prompt=system_prompt,
             user_prompt=f"User query: {user_query}",
             output_schema=LllmRouterSchema

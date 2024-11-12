@@ -2,7 +2,6 @@
 .env
 .envrc
 
-
 # Cache
 *.pickle
 *.pyc
