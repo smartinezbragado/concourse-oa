@@ -1,6 +1,7 @@
 # 📚 Concourse Take-Home Assessment
 
 Welcome! Below you'll find a detailed explanation of how the solution is built, instructions on how to run it, and some thoughts on potential next steps. Enjoy! 😄
+(FYI: Used OpenAI as LLM for simplicity)
 
 ---
 
@@ -48,8 +49,6 @@ Once the most relevant dataset is selected, the solution integrates with an LLM 
 - Dataset information such as the schema and a data sample.
 - Instructions to ensure the responses are concise and informative.
 
-#### Generating the LLM Response
-
 With the system prompt and the user's query, the `get_llm_answer` function is called to generate the final answer from the LLM.
 
 ---
@@ -80,6 +79,40 @@ Run the Docker container:
 ```docker run --env-file .env -p 8000:8000 concourse-take-home```
 
 The application will be accessible at ```http://localhost:8000```
+
+
+Once the application is running, you can interact with the `/api/v1/chat` endpoint to get responses from the AI assistant.
+
+#### Example Request:
+
+You can use `curl` or any API client to send a POST request to the endpoint. The available router_types are {"llm", "semantic"}
+
+**Using `curl`:**
+
+```bash
+curl -X POST "http://localhost:8000/api/v1/chat/" \
+     -H "Content-Type: application/json" \
+     -d '{
+           "router_type": "llm",
+           "user_query": "Can you provide a summary of the latest financial reports?"
+         }'
+```
+
+**Using Python and `requests` library:**
+
+```python
+import requests
+
+url = "http://localhost:8000/api/v1/chat/"
+payload = {
+    "router_type": "llm",
+    "user_query": "Can you provide a summary of the latest financial reports?"
+}
+
+response = requests.post(url, json=payload)
+print(response.json())
+```
+
 
 ---
 
@@ -121,6 +154,15 @@ Make the API accessible to everyone by deploying it to a cloud platform:
 - **Set Up CI/CD Pipeline**: Automate the deployment process using CI/CD tools like GitHub Actions or Jenkins.
 - **Ensure Scalability and Security**: Configure the deployment for scalability and ensure proper security measures are in place for handling API keys and user data.
 
+### 🤖 Deploy a LLM in-house
+
+To reduce operational costs and enhance user data security, consider deploying an in-house LLM such as **Llama 3.2** or similar.
+
+- **Cost Reduction**: Running your own LLM can lower expenses associated with API calls to external services.
+- **Data Privacy**: Keeping the model in-house ensures that sensitive user data does not leave your infrastructure, enhancing privacy and compliance.
+- **Customization**: An in-house model allows for fine-tuning and customizing the LLM to better suit your specific domain or use case.
+
+
 ---
 
-Feel free to reach out if you need further assistance with any of these steps! 🚀
+Feel free to reach out to ```smartinezbragado@gmail.com``` if you need further assistance with any of these steps! 🚀
