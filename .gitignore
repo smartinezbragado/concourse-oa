@@ -1,3 +1,10 @@
-# Env
+# Environemnt variables
 .env
 .envrc
+
+
+# Cache
+*.pickle
+*.pyc
+*.json
+
