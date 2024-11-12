@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "concourse take home task"
+version = "0.1.0"
+description = ""
+authors = ["smartinezbragado <smartinezbragado@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+openai = "^1.54.3"
+pandas = "^2.2.3"
+pydantic = "^2.9.2"
+cacheables = "^0.3.2"
+fastapi = {extras = ["standard"], version = "^0.115.4"}
+uvicorn = "^0.32.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
